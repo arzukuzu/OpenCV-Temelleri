@@ -15,6 +15,7 @@ import time
 kamera = cv2.VideoCapture(0)
 print("Kamera açılıyor, kapatmak için 'q' tuşuna basınız.")
 
+#ayarlar ve baslangıc degerleri.
 baslangıc = time.time()
 renk = (0 , 165 , 255)
 mod = "normal"
@@ -33,7 +34,7 @@ while True:
   cv2.circle(kare, (400 , 400) , 25, renk , -1)
 
 
-
+#klavyeyi 1 ms boyunca dinler; basılan tuşu 'tus' değişkenine atar ve 8 bitlik formata indirger.
   tus = cv2.waitKey(1) & 0XFF
 
   if tus == ord('a'):
@@ -46,7 +47,8 @@ while True:
     mod = 'normal'
   elif tus == ord('q'):
     break
-  
+
+  #bit düzeyinde (bitwise) tersleme işlemi yaparak görüntüdeki piksellerin negatifini alır.
   if mod == 'negatif':
     kare = cv2.bitwise_not(kare)
     cv2.putText(kare, "Gece surusu aktif!" , (50,110) , 
